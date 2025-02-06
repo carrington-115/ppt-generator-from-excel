@@ -5,17 +5,19 @@ import pandas as pd
     - store the all the sheets data of the excel file in a structured manner
 
 """
+# Update with your actual file path
+EXCEL_FILE = "5.EastAfricaPipelinev0.5.xlsx"
 
-def print_file_data(file):
-    print(file)
+# Load all sheet names
+xls = pd.ExcelFile(EXCEL_FILE)
 
-class readFile:
-    def __init__(self, filename, sheets, sheet_data):
-        self.filename = filename
+# Print sheet names
+print("Available Sheets:")
+for sheet in xls.sheet_names:
+    print(f"- {sheet}")
 
-    def __str__(self):
-        return self.filename
-    
-    def readSheetData(self, file):
-        data = ""
-        return data
+# Print columns for each sheet
+for sheet in xls.sheet_names:
+    df = pd.read_excel(EXCEL_FILE, sheet_name=sheet)  # Read only first 5 rows to speed up
+    print(f"\nSheet: {sheet}")
+    print(df.columns.tolist())  # Print column names
