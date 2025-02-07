@@ -1,8 +1,8 @@
-from source.readFile import readFile
+from source.generatePPTfile import generatePPTFromFile
 
 def main():
-    print("Hello World!")
-    print(readFile('file.xlsx'))
+    obj = generatePPTFromFile("", "", "")
+    obj.sayHello()
 
 
 if __name__ == "__main__":
