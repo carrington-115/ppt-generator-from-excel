@@ -5,9 +5,8 @@ from source.readFile import ReadExcelFile
 prs = Presentation()
 
 class GeneratePPTFromFile:
-    def __init__(self, file_name, excel_file_data, excel_file_location):
+    def __init__(self, file_name, excel_file_location):
         self.file_name = file_name
-        self.excel_file_data = excel_file_data
         self.excel_file_location = excel_file_location
 
 
@@ -62,19 +61,16 @@ class GeneratePPTFromFile:
         for name, data in all_sheet_data.items():
             rows, cols = read_object.rowAndCol(name)
             self.useGenerate(data, rows, cols)
-            
+
+        prs.save(ppt_location + self.file_name)
 
     def editFontSizeAndFamily(self, rows, cols, table):
-        for i in rows:
-            for j in cols:
+        for i in range(rows):
+            for j in range(cols):
                 cell = table.cell(i, j)
                 for paragraph in cell.text_frame.paragraphs:
                     paragraph.font.size = Pt(12)
                     paragraph.font.name = "EYInterstate Light"
 
-    def sayHello(self):
-        print('hello world')
-
-    # this method is used for a print action in the class
     def __str__(self):
         return self.filename
